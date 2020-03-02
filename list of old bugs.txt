@@ -1,0 +1,3 @@
+if not checking magnitude of player move vec player will return to 0,0
+enemies getting stuck on eachother correctx/y changes
+summon enemies blocking current enemies

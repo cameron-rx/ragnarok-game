@@ -1,0 +1,22 @@
+FINISH BOSS THEN ADD BOW
+
+
+
+
+Create collision box class to simplify collisions 
+
+
+
+skelly archer
+
+
+bow
+cannon
+flame spell
+
+movement potion
+uber potion
+
+smorc charging boss
+
+both bosses in last boss room then mega boss

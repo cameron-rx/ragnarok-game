@@ -1,0 +1,4 @@
+-make enemies collide
+-lock/unlock room doors
+-player enemy interaction
+

@@ -1,0 +1,59 @@
+largeSword.DrawItem(0)
+If largeSword.GetState() = "Equipped" Then
+	largeSword.Draw(p1.GetX(), p1.GetY)
+End If
+If largeSword.GetState() = "Equipped" Then
+	largeSword.updateAngle(p1.GetX + 14, p1.GetY + 25)
+	largeSword.Attack()
+	If KeyHit(KEY_Q) Then
+		largeSword.setPos(p1.GetX(),p1.GetY())
+		largeSword.updateState("Dropped")
+	End If 
+End If 
+
+Class PlayerItemHandler 
+	Field curWeapon:String
+	Field availableSword:Sword
+	Field heartEmptySprite:Image
+	Field heartFullSprite:Image
+	
+	Method New()
+		heartEmptySprite = LoadImage("gui/ui_heart_empty.png",1)
+		heartFullSprite = LoadImage("gui/ui_heart_full.png",1)
+	End Method
+
+	Method Draw(playerMaxHealth:Int,playerCurHealth:Int)
+		For Local i = 0 To playerMaxHealth - 1
+				DrawImage(heartEmptySprite,500 + (i*48) ,400,0,2,2)
+		Next
+		For Local i = 0 To playerCurHealth -1
+				DrawImage(heartFullSprite,500 + (i*48) ,400,0,2,2)
+		Next
+		
+		'Drawing inv slots
+		DrawRect(500,442,32,32)
+		DrawRect(548,442,32,32)
+		DrawRect(596,442,32,32)
+		
+		'Drawing curItems
+		Select curWeapon
+			Case "Sword"
+				availableSword.DrawItem(0)
+		End Select
+	End Method
+	
+	Method PickUp(item:Sword,playerX:Int,playerY:Int)
+		If item.GetState = "Dropped" And findDist(item.GetX,item.GetY,playerX,playerY) < 20 Then
+			curWeapon = "Sword"
+			item.updateState("Equipped")
+			availableSword = item
+		End If 
+	End Method
+	
+End Class
+
+Function findDist:Int(x1:Float,y1:Float,x2:Float,y2:Float)
+	Local xDist:Float = x1-x2
+	Local yDist:Float = y1-y2
+	Return Sqrt((xDist*xDist)+(yDist*yDist))
+End Function
